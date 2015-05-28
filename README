@@ -41,10 +41,10 @@ About:                  The essential notion of this library is to provide
                         in various more inspired ways.   
 
                         To be more portable, many common list functions 
-                        are implemented specificly for this project, 
+                        are implemented specifically for this project, 
                         though are named in a manner consistent with 
                         standard implementations; while taylored to the 
-                        needs of this library, they can replaced if 
+                        needs of this library, they can be replaced if 
                         desired.  Consistency and tail recursion are 
                         the principal reasons.  There are a number of 
                         custom supportive list functions included as 
@@ -74,6 +74,11 @@ About:                  The essential notion of this library is to provide
                         is 44.1kHz, 16 bit, signed little endian.  
                         You can play these with aplay or similar.
 
+                        Build files are placed in a _build directory.
+                        Assembly output is included in the chance 
+                        that one might want to scrutinize the code.
+                        `make clean` gets rid of the build directory.
+
                         
 Caveats:                One might think that this implementation would 
                         have a natural extension to Lagrange 
@@ -92,6 +97,15 @@ Caveats:                One might think that this implementation would
                         which naturally is a common region for 
                         upsampling applications, this is a poor 
                         assumption. 
+
+                        It should be noted that this implementation is 
+                        by no means the most efficient evaluation of 
+                        a FIR filter.  In many cases the coefficients
+                        are symmetric, which this implementation cannot
+                        optimize for.  In the case that there are 
+                        elements that routinely compute to zero (such 
+                        as the case with upsampling), again there is
+                        no optimization for this.
 
 
 How to run:             Tests:              make test
